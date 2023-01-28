@@ -5,6 +5,13 @@ const todoUl = document.getElementById("todo-ul");
 
 let todos = []
 
+const renderSavedTodos = () => {
+    todos.forEach((todo) => {
+        createListElement(todo);
+    })
+}
+renderSavedTodos();
+
 // Butona click olduğunda ne olsun?
 addBtn.addEventListener("click", (e) => {
     e.preventDefault()                               // sayfanın yenilenemsini engelledik
