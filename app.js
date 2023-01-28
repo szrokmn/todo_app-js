@@ -46,3 +46,20 @@ function createListElement(newTodo){
 
     todoUl.appendChild(li);
 }
+
+todoUl.addEventListener("click", (e) => {    
+    const id = e.target.parentElement.getAttribute("id");
+    if(e.target.classList.contains("fa-trash")) {
+        e.target.parentElement.remove();
+        todos = todos.filter((todo) => todo.id !== Number(id));
+        localStorage.setItem("TODOS", JSON.stringify(todos));
+    }else if(e.target.classList.contains("fa-check")) {
+        e.target.parentElement.classList.toggle("checked");
+        todos.map((todo, index) => {
+            if(todo.id == id) {
+                todos[index].completed = !todos[index].completed;
+            }
+        });
+        localStorage.setItem("TODOS", JSON.stringify(todos));
+    }
+});
