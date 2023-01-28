@@ -63,3 +63,13 @@ todoUl.addEventListener("click", (e) => {
         localStorage.setItem("TODOS", JSON.stringify(todos));
     }
 });
+
+todoInput.addEventListener("keydown", (e) => {
+    if(e.code === "Enter"){
+        addBtn.click();
+    }
+})
+
+window.onload = function () {
+    todoInput.focus();
+}
