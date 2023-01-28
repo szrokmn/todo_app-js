@@ -1,9 +1,8 @@
-// Selectors
 const todoInput = document.getElementById("todo-input");
 const addBtn = document.getElementById("todo-button");
 const todoUl = document.getElementById("todo-ul");
 
-let todos = []
+let todos = JSON.parse(localStorage.getItem("TODOS")) || []
 
 const renderSavedTodos = () => {
     todos.forEach((todo) => {
@@ -12,29 +11,27 @@ const renderSavedTodos = () => {
 }
 renderSavedTodos();
 
-// Butona click olduğunda ne olsun?
+
 addBtn.addEventListener("click", (e) => {
-    e.preventDefault()                               // sayfanın yenilenemsini engelledik
-    if(todoInput.value.trim() === ""){               // inputun içine değer girilmediyse alert ver
+    e.preventDefault()                               
+    if(todoInput.value.trim() === ""){              
         alert("Please enter new todo")
     }else{
         const newTodo = {
             id: new Date().getTime(),
             completed:false,
             text:todoInput.value,
-        };
-        // yeni bir li elementi oluşturup DOM a bas
+        };        
         createListElement(newTodo);        
-        todos.push(newTodo);  // yeni oluşturulan todo yu diziye sakla        
+        todos.push(newTodo);      
         localStorage.setItem("TODOS", JSON.stringify(todos));
-        console.log(todos)
         todoInput.value = "";
     }
 })
 
 function createListElement(newTodo){
     const { id, completed, text } = newTodo
-    const li = document.createElement("li");    // li elementi olusturduk
+    const li = document.createElement("li");   
     li.setAttribute("id", id);
     completed && li.classList.add("checked");
 
