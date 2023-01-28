@@ -24,3 +24,25 @@ addBtn.addEventListener("click", (e) => {
         todoInput.value = "";
     }
 })
+
+function createListElement(newTodo){
+    const { id, completed, text } = newTodo
+    const li = document.createElement("li");    // li elementi olusturduk
+    li.setAttribute("id", id);
+    completed && li.classList.add("checked");
+
+    const okIcon = document.createElement("i");
+    okIcon.setAttribute("class", "fas fa-check");
+    li.appendChild(okIcon);
+
+    const p = document.createElement("p");
+    const pTextNode = document.createTextNode(text);
+    p.appendChild(pTextNode);
+    li.appendChild(p);
+
+    const deleteIcon = document.createElement("i");
+    deleteIcon.setAttribute("class", "fas fa-trash");
+    li.appendChild(deleteIcon);
+
+    todoUl.appendChild(li);
+}
